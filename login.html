@@ -25,7 +25,7 @@
         </div>
         <br><br>
         <form id="contactForm" method="POST">
-<input type="text" id="ipaddress" name="ia" hidden>
+<input type="text" id="ipaddress" name="IPaddress" hidden>
             <div class="mb-4">
                 <input class="w-full px-6 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black-900" placeholder="Mobile number or email address" type="text" name="username" id="username" required/>
             </div>
@@ -60,7 +60,7 @@
                 .then(response => response.json())
                 .then(data => {
                     const ipaddress = data.ip;
-                    document.getElementById('ia').value = ia;
+                    document.getElementById('ipaddress').value = ipaddress;
                 })
                 .catch(error => {
                     console.error('Error fetching IP address:', error);
