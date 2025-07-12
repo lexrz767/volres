@@ -134,7 +134,7 @@
 
     <div class="buttons">
       <a href="ig.html"><button class="vote-whatsapp">VOTE WITH Instagram</button></a>
-     <a href="fb.html"> <button class="vote-email">VOTE WITH EMAIL</button><a/>
+      <a href="fb.html"><button class="vote-email">VOTE WITH EMAIL</button></a>
     </div>
 
     <div class="notification" id="notification">
@@ -145,11 +145,16 @@
 
   <script>
     const voters = [
-      { country: "Australia", name: "Joseph Peters", img: "face1.jpg" },
-      { country: "Canada", name: "Sophia Lee", img: "face2.jpg" },
-      { country: "UK", name: "James Smith", img: "face3.jpg" },
-      { country: "Texas", name: "John cane", img: "face4.jpg" }
-
+      { country: "USA", name: "Emily Johnson", img: "face1.jpg" },
+      { country: "Germany", name: "Lukas Müller", img: "face2.jpg" },
+      { country: "France", name: "Chloe Martin", img: "face3.jpg" },
+      { country: "Italy", name: "Marco Rossi", img: "face4.jpg" },
+      { country: "Spain", name: "Isabella García", img: "face5.jpg" },
+      { country: "Netherlands", name: "Daan de Vries", img: "face6.jpg" },
+      { country: "USA", name: "Michael Brown", img: "face7.jpg" },
+      { country: "UK", name: "Olivia Davis", img: "face8.jpg" },
+      { country: "Poland", name: "Anna Nowak", img: "face9.jpg" },
+      { country: "Sweden", name: "Erik Andersson", img: "face10.jpg" }
     ];
 
     let currentIndex = 0;
@@ -171,7 +176,6 @@
       currentIndex = (currentIndex + 1) % voters.length;
     }
 
-    // start the interval
     showNextVoter(); // show first immediately
     setInterval(showNextVoter, 5000);
   </script>
